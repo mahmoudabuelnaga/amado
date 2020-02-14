@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+    <!-- ##### Main Content Wrapper Start ##### -->
+        <div class="shop_sidebar_area">
+            <form method="GET">
+            <!-- ##### Single Widget ##### -->
+            <div class="widget catagory mb-50">
+                <!-- Widget Title -->
+                <h6 class="widget-title mb-30">Catagories</h6>
+                <!--  Catagories  -->
+                <div class="catagories-menu">
+                    <ul>
+                        {% for choice in filter.form.catagory %}
+                        <li class=""><a>{{choice.tag}} {{ choice.choice_label }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ##### Single Widget ##### -->
+            <div class="widget brands mb-50">
+                <!-- Widget Title -->
+                <h6 class="widget-title mb-30">Brands</h6>
+
+                <div class="widget-desc">
+                    <!-- Single Form Check -->
+                    {% for choice in filter.form.brand %}
+                    <div class="form-check">
+                        <label class="form-check-label">{{ choice.tag }} {{ choice.choice_label }}</label>
+                    </div>
+                    {% endfor %}
+                    <!-- Single Form Check -->
+                </div>
+            </div>
+
+            <!-- ##### Single Widget ##### -->
+            <div class="widget color mb-50">
+                <!-- Widget Title -->
+                <h6 class="widget-title mb-30">Color</h6>
+
+                <div class="widget-desc">
+                    <ul class="d-flex">
+                        {% for choice in filter.form.color %}
+                        <li ><a style="background-color: {{ choice.choice_label }}; color: {{ choice.choice_label }};">{{ choice.tag }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ##### Single Widget ##### -->
+            <div class="widget price mb-50">
+                <!-- Widget Title -->
+                <h6 class="widget-title mb-30">Price</h6>
+
+                <div class="widget-desc">
+                    <div class="slider-range">
+                        {{ filter.form.min_price }}
+                        <br>
+                        {{ filter.form.max_price }}
+                    </div>                    
+                     
+                        {% comment %}
+                        {{ filter.form.min_price }}
+                    <div class="slider-range">
+                        <div data-min="10" data-max="1000" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="{{min_price.price__min}}" data-value-max="{{max_price.price__max}}" data-label-result="">
+                            
+                            <div class="ui-slider-range ui-widget-header ui-corner-all">                    {% for price in filter.qs %}
+                                {{ price.price }}{% endfor %}</div>
+                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="{{filter.form.min_price}"></span>
+                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="{{max_price.price__max}}"></span>
+                        </div>
+                        <div class="range-price">${{min_price.price__min}} - ${{max_price.price__max}}</div>
+                    </div>
+                    {% endcomment %}
+                </div>
+            </div>
+
+            <!-- ##### Single Widget ##### -->
+            <div class="widget price mb-50">
+                <!-- Widget Title -->
+            <!-- Button Group -->
+                <div class="amado-btn-group mt-30 mb-100">
+                    {% buttons %}
+                    <button type="submit" class="btn amado-btn mb-15"><img src="{% static 'img/core-img/search.png' %}" alt="">  Search</button>
+                    {% endbuttons %}
+                </div>
+            </div>
+        </form>
+        </div>
+
+        <div class="amado_product_area section-padding-100">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="product-topbar d-xl-flex align-items-end justify-content-between">
+                            <!-- Total Products -->
+                            <div class="total-products">
+                                <div class="view d-flex">
+                                    <a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Single Product Area -->
+                    {% for product in product %}                        
+                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                <img src="{{ product.product_image.url }}" alt="">
+                                <!-- Hover Thumb -->
+                                <img class="hover-img" src="{{ product.hover_image.url }}" alt="">
+                            </div>
+
+                            <!-- Product Description -->
+                            <div class="product-description d-flex align-items-center justify-content-between">
+                                <!-- Product Meta Data -->
+                                <div class="product-meta-data">
+                                    <div class="line"></div>
+                                    <p class="product-price">${{ product.price }}</p>
+                                    <a href="{{ product.get_absolute_url }}">
+                                        <h6>{{ product.title }}</h6>
+                                    </a>
+                                </div>
+                                <!-- Ratings & Cart -->
+                                <div class="ratings-cart text-right">
+                                    <!-- <div class="ratings">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div> -->
+                                    <!-- <form action="{% url 'cart:cart_add' product.id %}" class="cart clearfix" method="POST">{% csrf_token %}
+                                    <div class="cart">
+                                        {{ cart_product_form.quantity }} 
+                                        {{cart_product_form.update}}
+                                        <button type="submit" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{% static 'img/core-img/cart.png' %}" alt="">
+                                            
+                                        </button>
+                                    </div>
+                                    </form> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Pagination -->
+
+                        <nav aria-label="navigation">
+                            {% if product.has_other_pages %}
+                            <ul class="pagination justify-content-end mt-50">
+                                {% for i in product.paginator.page_range %}
+                                    {% if product.number == i %}
+                                        <li class="page-item active"><a class="page-link" href="">{{ i }}</a></li>
+                                    {% else %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                            </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- ##### Main Content Wrapper End ##### -->
+    {% endblock content %}

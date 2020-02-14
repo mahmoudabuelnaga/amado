@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+    Furniture Store | Home
+{% endblock title %}
+    
+{% block content %}    
+<!-- Product Catagories Area Start -->
+<div class="products-catagories-area clearfix">
+    <div class="amado-pro-catagory clearfix">
+        <!-- Single Catagory -->
+        {% for obj in object_list %}            
+            <div class="single-products-catagory clearfix">
+                <a href="shop/?catagory={{ obj.id }}&min_price=&max_price=">
+                    <img src="{{ obj.image.url }}" alt="{{ obj.title }}">
+                    <!-- Hover Content -->
+                    <div class="hover-content">
+                        <div class="line"></div>
+                        <p>From ${{ obj.current_price }}</p>
+                        <h4>{{ obj.title }}</h4>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- Product Catagories Area End -->
+{% endblock content %}

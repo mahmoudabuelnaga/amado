@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+
+
+<div class="jumbotron text-center" style="width: 80%; margin-left: 20%; margin-top: -54%;">
+    <h1 class="display-3" style="color:#0fad00">Done!</h1>
+    <h3>Dear, {{ order.first_name|title }} {{ order.last_name|title }}</h3>
+    <p class="lead"><strong>Thank you for completing your purchase.</strong>  <br>
+      Your order has been successfully completed. Your order number is
+      <strong>{{ order.id }}</strong>. <br>
+      We have sent you an email "{{ order.email }}" with your details, 
+      please go to your email above now and log in.</p>
+    <hr>
+    <p>
+      Having trouble? <a href="">Contact us</a>
+    </p>
+    <p class="lead">
+      <a href="{% url 'products:home' %}" class="amado-btn w-100" style="background-color: green;">     Home      </a>
+    </p>
+  </div>  
+</div>
+  {% endblock content %} 
+
+  {% comment %}
+
+  
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  
+  <div class="jumbotron text-center">
+      <div class="row text-center">
+          <div class="col-sm-6 col-sm-offset-3">
+          <h2 style="color:#0fad00">Success</h2>
+          <i class="far fa-check-circle"></i>
+          <h3>Dear, {{ order.first_name|title }} {{ order.last_name|title }}</h3>
+          <p style="font-size:20px;color:#5C5C5C;">Thank you for completing your purchase.
+             We have sent you an email "{{ order.email }}" with your details,
+              please go to your email above now and log in.
+        </p>
+          <a href="{% url 'products:home' %}" class="amado-btn w-100" style="background-color: green;">     Home      </a>
+          </div>
+          
+      </div>
+  </div>
+     
+  {% endcomment %}
