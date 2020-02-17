@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'import_export',
 
 
     #Our Apps
@@ -172,14 +173,9 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 
 
 # Stripe Settings
-if DEBUG:
-    # test keys
-    STRIPE_PUBLISHABLE_KEY  = 'pk_test_IzSIOFYSyIbzCMlGfXKrjLYe00O8bysXA0'
-    STRIPE_SECRET_KEY       = 'sk_test_LW7n1E82NzgbKG5QLj6UTvff00CjJ4S9MG'
-else:
-    # live keys
-    STRIPE_PUBLISHABLE_KEY = 'YOUR STRIPE LIVE PUB KEY'
-    STRIPE_SECRET_KEY = 'YOUR STRIPE LIVE SECRET KEY'
+STRIPE_PUBLISHABLE_KEY  = 'pk_test_IzSIOFYSyIbzCMlGfXKrjLYe00O8bysXA0'
+STRIPE_SECRET_KEY       = 'sk_test_LW7n1E82NzgbKG5QLj6UTvff00CjJ4S9MG'
+
 
 # Django AllAuth Settings
 AUTHENTICATION_BACKENDS = (
@@ -193,3 +189,8 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/shop'
+
+
+
+# import_export
+IMPORT_EXPORT_USE_TRANSACTIONS = True

@@ -20,7 +20,13 @@
             <!--Card content-->
             <form class="card-body" method="POST" action="">{% csrf_token %}
                 {% bootstrap_form form %}
-
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="{{ key }}"
+                data-description="Order Charge"
+                data-amount= {{charge.amount }}
+                data-locale="auto">
+              </script>
+  
               <hr class="mb-4">
               {% buttons %}
               <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
@@ -77,6 +83,18 @@
             </div>
           </form>
           <!-- Promo code -->
+          
+          {% comment %}
+          <form action="" method="POST">{% csrf_token %}
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="{{ key }}"
+              data-description="Order Charge"
+              data-amount= {{cart.get_total_price }} * 100
+              data-locale="auto">
+          </script>
+          </form>
+          {% endcomment %}
+
 
         </div>
         <!--Grid column-->
